@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cybersecurity Wordle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #c5050c;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    footer {
+      background-color: #c5050c;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    main {
+      padding: 1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .instructions {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .wordle-box {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 1rem;
+    }
+    .letter-box {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      font-size: 1.5rem;
+      border: 2px solid #ccc;
+      background-color: #fff;
+    }
+    .correct {
+      background-color: #6aaa64;
+      color: white;
+    }
+    .present {
+      background-color: #c9b458;
+      color: white;
+    }
+    .absent {
+      background-color: #787c7e;
+      color: white;
+    }
+    .clue, .tip {
+      margin-bottom: 1rem;
+    }
+    .congrats {
+      font-weight: bold;
+      color: green;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cybersecurity Awareness Wordle</h1>
+  </header>
+  <main>
+    <div class="instructions" aria-label="Game Instructions">
+      <h2>How to Play</h2>
+      <p>Guess the cybersecurity-themed word of the day. You have 6 tries.</p>
+      <ul>
+        <li><span style="background-color:#6aaa64;color:white;padding:2px 6px;">Green</span>: Correct letter in correct position</li>
+        <li><span style="background-color:#c9b458;color:white;padding:2px 6px;">Yellow</span>: Correct letter in wrong position</li>
+        <li><span style="background-color:#787c7e;color:white;padding:2px 6px;">Gray</span>: Incorrect letter</li>
+      </ul>
+    </div>
+    <label for="day-select">Choose a day:</label>
+    <select id="day-select" aria-label="Select puzzle day">
+      <option value="0">Oct 1</option><option value="1">Oct 2</option><option value="2">Oct 3</option><option value="3">Oct 4</option><option value="4">Oct 5</option><option value="5">Oct 6</option><option value="6">Oct 7</option><option value="7">Oct 8</option><option value="8">Oct 9</option><option value="9">Oct 10</option><option value="10">Oct 11</option><option value="11">Oct 12</option><option value="12">Oct 13</option><option value="13">Oct 14</option><option value="14">Oct 15</option><option value="15">Oct 16</option><option value="16">Oct 17</option><option value="17">Oct 18</option><option value="18">Oct 19</option><option value="19">Oct 20</option><option value="20">Oct 21</option><option value="21">Oct 22</option><option value="22">Oct 23</option><option value="23">Oct 24</option><option value="24">Oct 25</option><option value="25">Oct 26</option><option value="26">Oct 27</option><option value="27">Oct 28</option><option value="28">Oct 29</option><option value="29">Oct 30</option><option value="30">Oct 31</option>
+    </select>
+    <div class="clue" id="clue" aria-live="polite"></div>
+    <div class="tip" id="tip" aria-live="polite"></div>
+    <input type="text" id="guess-input" maxlength="5" aria-label="Enter your guess"/>
+    <button onclick="submitGuess()">Submit Guess</button>
+    <div id="guesses"></div>
+    <div class="congrats" id="congrats" aria-live="polite"></div>
+  </main>
+  <footer>
+    &copy; 2025 University of Wisconsin–Madison
+  </footer>
+  <script>
+    const puzzles = [{"date": "Oct 1", "word": "phish", "clue": "A deceptive attempt to obtain sensitive information via email."}, {"date": "Oct 2", "word": "token", "clue": "Used to authenticate users without transmitting passwords."}, {"date": "Oct 3", "word": "patch", "clue": "A software update that fixes security vulnerabilities."}, {"date": "Oct 4", "word": "admin", "clue": "A user with elevated privileges on a system."}, {"date": "Oct 5", "word": "virus", "clue": "Malicious code that replicates and spreads to other programs."}, {"date": "Oct 6", "word": "proxy", "clue": "An intermediary server separating end users from websites."}, {"date": "Oct 7", "word": "audit", "clue": "A formal review of system security and compliance."}, {"date": "Oct 8", "word": "input", "clue": "User-provided data that must be validated to prevent injection."}, {"date": "Oct 9", "word": "alert", "clue": "A notification triggered by suspicious activity."}, {"date": "Oct 10", "word": "trust", "clue": "A key principle in zero-trust security models."}, {"date": "Oct 11", "word": "click", "clue": "A common action exploited in phishing attacks."}, {"date": "Oct 12", "word": "spoof", "clue": "Falsifying data to appear as a trusted source."}, {"date": "Oct 13", "word": "guard", "clue": "To protect systems from unauthorized access."}, {"date": "Oct 14", "word": "https", "clue": "Secure protocol for encrypted web communication."}, {"date": "Oct 15", "word": "login", "clue": "The process of accessing a system with credentials."}, {"date": "Oct 16", "word": "trace", "clue": "To follow the path of data or activity."}, {"date": "Oct 17", "word": "block", "clue": "To prevent access to malicious content."}, {"date": "Oct 18", "word": "token", "clue": "Used to authenticate users without transmitting passwords."}, {"date": "Oct 19", "word": "admin", "clue": "A user with elevated privileges on a system."}, {"date": "Oct 20", "word": "audit", "clue": "A formal review of system security and compliance."}, {"date": "Oct 21", "word": "input", "clue": "User-provided data that must be validated to prevent injection."}, {"date": "Oct 22", "word": "alert", "clue": "A notification triggered by suspicious activity."}, {"date": "Oct 23", "word": "trust", "clue": "A key principle in zero-trust security models."}, {"date": "Oct 24", "word": "click", "clue": "A common action exploited in phishing attacks."}, {"date": "Oct 25", "word": "spoof", "clue": "Falsifying data to appear as a trusted source."}, {"date": "Oct 26", "word": "guard", "clue": "To protect systems from unauthorized access."}, {"date": "Oct 27", "word": "https", "clue": "Secure protocol for encrypted web communication."}, {"date": "Oct 28", "word": "login", "clue": "The process of accessing a system with credentials."}, {"date": "Oct 29", "word": "trace", "clue": "To follow the path of data or activity."}, {"date": "Oct 30", "word": "block", "clue": "To prevent access to malicious content."}, {"date": "Oct 31", "word": "cyber", "clue": "Relating to computers, networks, and digital security."}];
+    let currentPuzzle = puzzles[0];
+    let guesses = [];
+
+    document.getElementById("day-select").addEventListener("change", function() {
+      const index = parseInt(this.value);
+      currentPuzzle = puzzles[index];
+      guesses = [];
+      document.getElementById("clue").textContent = "Clue: " + currentPuzzle.clue;
+      document.getElementById("tip").textContent = currentPuzzle.tip ? "Tip: " + currentPuzzle.tip : "";
+      document.getElementById("guesses").innerHTML = "";
+      document.getElementById("congrats").textContent = "";
+    });
+
+    document.getElementById("day-select").dispatchEvent(new Event("change"));
+
+    function submitGuess() {
+      const input = document.getElementById("guess-input");
+      const guess = input.value.toLowerCase();
+      if (guess.length !== currentPuzzle.word.length || guesses.length >= 6) return;
+      guesses.push(guess);
+      const row = document.createElement("div");
+      row.className = "wordle-box";
+      for (let i = 0; i < guess.length; i++) {
+        const box = document.createElement("div");
+        box.className = "letter-box";
+        box.textContent = guess[i];
+        if (guess[i] === currentPuzzle.word[i]) {
+          box.classList.add("correct");
+        } else if (currentPuzzle.word.includes(guess[i])) {
+          box.classList.add("present");
+        } else {
+          box.classList.add("absent");
+        }
+        row.appendChild(box);
+      }
+      document.getElementById("guesses").appendChild(row);
+      input.value = "";
+      if (guess === currentPuzzle.word) {
+        document.getElementById("congrats").textContent = "🎉 Congratulations! You guessed the word correctly.";
+      } else if (guesses.length === 6) {
+        document.getElementById("congrats").textContent = "❌ Out of guesses! The word was: " + currentPuzzle.word;
+      }
+    }
+  </script>
+</body>
+</html>

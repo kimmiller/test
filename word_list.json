@@ -1,0 +1,157 @@
+[
+  {
+    "date": "Oct 1",
+    "word": "phish",
+    "clue": "A deceptive attempt to obtain sensitive information via email."
+  },
+  {
+    "date": "Oct 2",
+    "word": "token",
+    "clue": "Used to authenticate users without transmitting passwords."
+  },
+  {
+    "date": "Oct 3",
+    "word": "patch",
+    "clue": "A software update that fixes security vulnerabilities."
+  },
+  {
+    "date": "Oct 4",
+    "word": "admin",
+    "clue": "A user with elevated privileges on a system."
+  },
+  {
+    "date": "Oct 5",
+    "word": "virus",
+    "clue": "Malicious code that replicates and spreads to other programs."
+  },
+  {
+    "date": "Oct 6",
+    "word": "proxy",
+    "clue": "An intermediary server separating end users from websites."
+  },
+  {
+    "date": "Oct 7",
+    "word": "audit",
+    "clue": "A formal review of system security and compliance."
+  },
+  {
+    "date": "Oct 8",
+    "word": "input",
+    "clue": "User-provided data that must be validated to prevent injection."
+  },
+  {
+    "date": "Oct 9",
+    "word": "alert",
+    "clue": "A notification triggered by suspicious activity."
+  },
+  {
+    "date": "Oct 10",
+    "word": "trust",
+    "clue": "A key principle in zero-trust security models."
+  },
+  {
+    "date": "Oct 11",
+    "word": "click",
+    "clue": "A common action exploited in phishing attacks."
+  },
+  {
+    "date": "Oct 12",
+    "word": "spoof",
+    "clue": "Falsifying data to appear as a trusted source."
+  },
+  {
+    "date": "Oct 13",
+    "word": "guard",
+    "clue": "To protect systems from unauthorized access."
+  },
+  {
+    "date": "Oct 14",
+    "word": "https",
+    "clue": "Secure protocol for encrypted web communication."
+  },
+  {
+    "date": "Oct 15",
+    "word": "login",
+    "clue": "The process of accessing a system with credentials."
+  },
+  {
+    "date": "Oct 16",
+    "word": "trace",
+    "clue": "To follow the path of data or activity."
+  },
+  {
+    "date": "Oct 17",
+    "word": "block",
+    "clue": "To prevent access to malicious content."
+  },
+  {
+    "date": "Oct 18",
+    "word": "token",
+    "clue": "Used to authenticate users without transmitting passwords."
+  },
+  {
+    "date": "Oct 19",
+    "word": "admin",
+    "clue": "A user with elevated privileges on a system."
+  },
+  {
+    "date": "Oct 20",
+    "word": "audit",
+    "clue": "A formal review of system security and compliance."
+  },
+  {
+    "date": "Oct 21",
+    "word": "input",
+    "clue": "User-provided data that must be validated to prevent injection."
+  },
+  {
+    "date": "Oct 22",
+    "word": "alert",
+    "clue": "A notification triggered by suspicious activity."
+  },
+  {
+    "date": "Oct 23",
+    "word": "trust",
+    "clue": "A key principle in zero-trust security models."
+  },
+  {
+    "date": "Oct 24",
+    "word": "click",
+    "clue": "A common action exploited in phishing attacks."
+  },
+  {
+    "date": "Oct 25",
+    "word": "spoof",
+    "clue": "Falsifying data to appear as a trusted source."
+  },
+  {
+    "date": "Oct 26",
+    "word": "guard",
+    "clue": "To protect systems from unauthorized access."
+  },
+  {
+    "date": "Oct 27",
+    "word": "https",
+    "clue": "Secure protocol for encrypted web communication."
+  },
+  {
+    "date": "Oct 28",
+    "word": "login",
+    "clue": "The process of accessing a system with credentials."
+  },
+  {
+    "date": "Oct 29",
+    "word": "trace",
+    "clue": "To follow the path of data or activity."
+  },
+  {
+    "date": "Oct 30",
+    "word": "block",
+    "clue": "To prevent access to malicious content."
+  },
+  {
+    "date": "Oct 31",
+    "word": "cyber",
+    "clue": "Relating to computers, networks, and digital security."
+  }
+]
